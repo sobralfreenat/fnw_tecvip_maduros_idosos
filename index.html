@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protótipo Wireframe - Home (Combinado)</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      font-size: 200%;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 1.125rem; /* 18px */
+      line-height: 1.6;
+      color: #111;
+      background-color: #f5f5f5;
+      padding-top: 60px;
+    }
+
+    /* Navigation */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    nav {
+      max-width: 1500px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+    }
+    nav a {
+      color: #0070f3;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections common */
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    h1, h2, h3 {
+      color: #111;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    p {
+      margin-top: 0.5rem;
+    }
+    button {
+      background-color: #0070f3;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background-color: #005bb5;
+    }
+
+    /* Hero */
+    #hero {
+      padding-top: 40px;
+    }
+    #hero .hero-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    #hero .hero-content {
+      flex: 0 0 40%;
+      max-width: 400px;
+      text-align: left;
+    }
+    #hero .hero-image {
+      flex: 0 0 55%;
+      min-width: 300px;
+      text-align: center;
+    }
+    #hero .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+    #hero h1 {
+      font-size: 2.5rem;
+    }
+    #hero p {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    /* Benefits */
+    #benefits {
+      text-align: center;
+    }
+    #benefits h2 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    #benefits .cards-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    #benefits .card {
+      background: #fff;
+      padding: 1.5rem;
+      margin: 0;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      flex: 0 0 calc(33.333% - 1rem);
+      vertical-align: top;
+      text-align: left;
+    }
+    #benefits .card h3 {
+      font-size: 1.25rem;
+    }
+    #benefits .card p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* Pricing */
+    #pricing {
+      text-align: center;
+    }
+    #pricing h2 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    #pricing .plans-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    #pricing .plan {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 0;
+      flex: 0 0 calc(33.333% - 1rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      vertical-align: top;
+      text-align: left;
+    }
+    #pricing .plan h3 {
+      font-size: 1.5rem;
+    }
+    #pricing .plan p {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+    }
+    #pricing .plan ul {
+      text-align: left;
+      margin-top: 0.75rem;
+    }
+    #pricing .plan ul li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* CTA */
+    #cta {
+      text-align: center;
+    }
+    #cta h2 {
+      font-size: 2rem;
+    }
+    #cta p {
+      margin-top: 1rem;
+      font-size: 1.125rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.875rem;
+      color: #555;
+    }
+
+    /* Mobile Menu Styles */
+    .hamburger {
+      display: none;
+      position: absolute;
+      top: 6px;
+      right: 16px;
+      width: 32px;
+      height: 36px;
+      padding-bottom: 2px;
+      flex-direction: column;
+      justify-content: space-between;
+      background: blue;
+      border: none;
+      cursor: pointer;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 4px;
+      background-color: #0070f3;
+      border-radius: 2px;
+      margin-bottom: 4px;
+    }
+    .hamburger span:last-child {
+      margin-bottom: 0;
+    }
+    /* Label below the hamburger bars */
+    .hamburger-label {
+      display: block;
+      width: 25%;          /* Ensure label takes full width */
+      color: #11ff00;          /* Menu text color */
+      font-size: 0.75rem;   /* Smaller font size to fit button */
+      line-height: 0;       /* Reduce line height */
+      margin-top: -25px; /* Remove margin, rely on padding/height */
+      text-align: left;
+    }
+    #mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 260px;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+      padding: 2rem 1rem;
+      transition: right 0.3s ease;
+      z-index: 150;
+    }
+    #mobile-menu.active {
+      right: 0;
+    }
+    /* Responsive Mobile Overrides */
+    @media (max-width: 768px) {
+      header > nav {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      /* Links inside mobile menu panel */
+      #mobile-menu nav {
+        display: block;
+      }
+      #mobile-menu nav a {
+        display: block;
+        padding: 0.75rem 0;
+        color: #0070f3;
+        text-decoration: none;
+        border-bottom: 1px solid #eee;
+      }
+      #mobile-menu nav a:last-child {
+        border-bottom: none;
+      }
+    }
+
+    /* Responsive slider for cards */
+    @media (max-width: 768px) {
+      /* Horizontal slider for benefit & plan cards */
+      #benefits .cards-container,
+      #pricing .plans-container {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      #benefits .cards-container::-webkit-scrollbar,
+      #pricing .plans-container::-webkit-scrollbar {
+        display: none;
+      }
+      #benefits .card,
+      #pricing .plan {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        margin-right: 1rem;
+      }
+      /* Hero stacks on mobile */
+      #hero .hero-container {
+        flex-direction: column;
+      }
+      #hero .hero-content,
+      #hero .hero-image {
+        flex: 1 1 100%;
+      }
+    }
+
+    /* Header Logo Style */
+    .header-logo {
+      height: 40px;
+      width: auto;
+      display: block;
+      margin-right: auto;
+    }
+
+    /* Floating WhatsApp Button Styles */
+    #whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #whatsapp-float img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    #whatsapp-float span {
+      font-size: 1rem;
+      color: #111;
+      font-weight: 600;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://www.sie.com.br/admin/_upload/2021/10/23/29155/665e0803ea26e.png" alt="FNW Assessoria Digital Logo" class="header-logo">
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+      <span class="hamburger-label">Menu</span>
+    </button>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#benefits">Benefícios</a>
+      <a href="#pricing">Planos</a>
+      <a href="#cta">Contato</a>
+    </nav>
+    <div id="mobile-menu">
+      <nav>
+        <a href="#">Início</a>
+        <a href="#benefits">Benefícios</a>
+        <a href="#pricing">Planos</a>
+        <a href="#cta">Contato</a>
+        <a href="#whatsapp" id="whatsapp-menu-link">Fale Conosco (WhatsApp)</a>
+      </nav>
+    </div>
+  </header>
+<br><br>
+  <main>
+    <section id="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1>Sofrendo com tecnologia?</h1>
+          <p>Suporte especializado<br>sob medida para pessoas maduras e idosos.</p>
+          <button id="hero-cta-button">Comece Agora</button>
+        </div>
+        <div class="hero-image">
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/680bf0711dd73_ProvisoriaIDosotech.png" alt="Imagem do Hero">
+        </div>
+      </div>
+    </section>
+    <br><br><br>
+    <section id="benefits">
+      <h2>Por que escolher nosso serviço?</h2>
+      <div class="cards-container">
+        <div class="card">
+          <h3>Suporte<br> Dedicado</h3>
+          <p>Atendimento VIP com especialistas experientes em bem estar e
+          educação digital.</p>
+        </div>
+        <div class="card">
+          <h3>Conteúdos Diversificados</h3>
+          <p>Vídeos instrutivos e recursos interativos para estimulo cognitivo contínuo.</p>
+        </div>
+        <div class="card">
+          <h3>Acesso Familiar</h3>
+          <p>Acesso Compartilhado em corstesia e incentivo para até 4 familiares cadastrados.</p>
+        </div>
+      </div>
+    </section>
+<br><br><br>   
+    <section id="pricing">
+      <h2>Escolha o Plano Ideal para Você</h2>
+      <div class="plans-container">
+        <div class="plan">
+          <h3>Semanal</h3>
+          <p><strong>R$ 600/ mês</strong></p>
+          <ul>
+            <li>1 atendimento por semana</li>
+            <li>Disponibilidade de 3 horas</li>
+            <li>Acesso: +4 familiares cadastrados</li>
+          </ul>
+          <button class="plan-button" data-plan-name="Semanal">Escolher Plano</button>
+        </div>
+        <div class="plan">
+          <h3>Quinzenal</h3>
+          <p><strong>R$ 400/ mês</strong></p>
+          <ul>
+            <li>1 atendimento a cada 15 dias</li>
+            <li>Disponibildade de 2h30</li>
+            <li>Acesso: +3 familiares cadastrados</li>
+          </ul>
+          <button class="plan-button" data-plan-name="Quinzenal">Escolher Plano</button>
+        </div>
+        <div class="plan">
+          <h3>21 Dias</h3>
+          <p><strong>R$ 300/ mês</strong></p>
+          <ul>
+            <li>1 atendimento a cada 21 dias</li>
+            <li>Disponibildade de 2 horas</li>
+            <li>Acesso: +2 familiares cadastrados</li>
+          </ul>
+          <button class="plan-button" data-plan-name="21 Dias">Escolher Plano</button>
+        </div>
+      </div>
+    </section>
+    <br><br><br>
+    <section id="cta">
+      <h2>Pronto para Aliviar sua Jornada Digital?</h2>
+      <p>Junte-se a milhares de pessoas que já descobriram como simplificar o uso de tecnologia.</p>
+      <button id="cta-contact-button">Entre em Contato</button>
+    </section>
+  </main>
+  <br><br><br>
+  <footer>
+    <p>&copy; 2025 FNW Assessoria Digital</p>
+  </footer><br><br><br>
+
+  <!-- Floating WhatsApp Button -->
+  <div id="whatsapp-float">
+    <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/6621e93e3f3ae_FNWfreenatstoreLogodownload.jpg" alt="Logo">
+    <span>Fale Conosco</span>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </div>
+
+  <script>
+    // Smooth scrolling for navigation links
+    (function() {
+      'use strict';
+      document.addEventListener('DOMContentLoaded', function() {
+        // Select links from both desktop and mobile navs
+        var links = document.querySelectorAll('header nav a[href^="#"], #mobile-menu nav a[href^="#"]');
+        links.forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var href = this.getAttribute('href');
+
+            if (href === '#') {
+              // Scroll to top if href is exactly '#'
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              // Original logic for other #hash links
+              var targetId = href.slice(1);
+              var targetEl = document.getElementById(targetId);
+              if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+            // Close mobile menu if open and a link is clicked
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('active')) {
+              mobileMenu.classList.remove('active');
+            }
+          });
+        });
+      });
+    })();
+    // Mobile menu toggle
+    (function() {
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      hamburger.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+      });
+    })();
+    // WhatsApp link in mobile menu click handler
+    (function() {
+      var whatsappLink = document.getElementById('whatsapp-menu-link');
+      var phoneNumber = '5511911595028'; // Your WhatsApp number
+
+      if (whatsappLink) {
+        whatsappLink.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent default anchor behavior
+
+          // Construct the message
+          var message = "Olá! Visitei a página da FNWl (contato via menu) e gostaria de tirar dúvidas sobre o suporte de tecnologia a pessoas maduras ou idosas, que ainda tem muita \"lenha para queimar\"!";
+          var encodedMessage = encodeURIComponent(message);
+          var whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+          // Open WhatsApp in a new window/tab
+          var width = 400;
+          var height = 600;
+          var left = (screen.width - width) / 2;
+          var top = (screen.height - height) / 2;
+          window.open(whatsappUrl, 'whatsappWindow', `width=${width},height=${height},top=${top},left=${left}`);
+
+          // Optionally close the menu after clicking
+          var mobileMenu = document.getElementById('mobile-menu');
+          if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+          }
+        });
+      }
+    })();
+    // CTA button opens WhatsApp after confirmation
+    (function() {
+      var ctaButton = document.getElementById('cta-contact-button');
+      var phoneNumber = '5511911595028'; // Your WhatsApp number
+
+      if (ctaButton) {
+        ctaButton.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent default button action
+
+          // Specific message for this button
+          var message = "Olá! Visitei a página da FNWl e gostaria de tirar dúvidas sobre o suporte de tecnologia a pessoas maduras ou idosas, que ainda tem muita \"lenha para queimar\"!";
+          var confirmationMessage = "Deseja iniciar a conversa no WhatsApp?";
+
+          // Show confirmation dialog
+          if (window.confirm(confirmationMessage)) {
+            // User confirmed, open WhatsApp
+            var encodedMessage = encodeURIComponent(message);
+            var whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+            // Open WhatsApp in a new window/tab
+            var width = 400;
+            var height = 600;
+            var left = (screen.width - width) / 2;
+            var top = (screen.height - height) / 2;
+            window.open(whatsappUrl, 'whatsappWindow', `width=${width},height=${height},top=${top},left=${left}`);
+          } else {
+            // User canceled
+            console.log('User canceled WhatsApp from CTA button.');
+          }
+        });
+      }
+    })();
+    // Hero CTA button smooth scroll to benefits
+    (function() {
+      var heroButton = document.getElementById('hero-cta-button');
+      var benefitsSection = document.getElementById('benefits');
+
+      if (heroButton && benefitsSection) {
+        heroButton.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent default if it's inside a form, etc.
+
+          // Calculate position with offset
+          var elementPosition = benefitsSection.getBoundingClientRect().top;
+          var offsetPosition = elementPosition + window.pageYOffset - 100; // Subtract 100px offset
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        });
+      }
+    })();
+    // WhatsApp float button click handler
+    (function() {
+      var whatsappButton = document.getElementById('whatsapp-float');
+      if (whatsappButton) {
+        whatsappButton.onclick = function() {
+          var width = 400;
+          var height = 600;
+          var left = (screen.width - width) / 2;
+          var top = (screen.height - height) / 2;
+          window.open('https://api.whatsapp.com/send?phone=5511911595028', 'whatsappWindow', `width=${width},height=${height},top=${top},left=${left}`);
+        };
+      }
+    })();
+    // Pricing plan buttons - confirm and open WhatsApp
+    (function() {
+      var planButtons = document.querySelectorAll('.plan-button');
+      var phoneNumber = '5511911595028'; // Your WhatsApp number
+
+      planButtons.forEach(function(button) {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          // Find the parent .plan container for this button
+          var planElement = this.closest('.plan');
+          if (!planElement) return; // Safety check
+
+          // Extract details from the plan element
+          var planName = this.getAttribute('data-plan-name');
+          var priceElement = planElement.querySelector('p > strong');
+          var price = priceElement ? priceElement.textContent : 'Preço não encontrado';
+          var featureElements = planElement.querySelectorAll('ul li');
+          var features = [];
+          featureElements.forEach(function(li) {
+            features.push("- " + li.textContent.trim());
+          });
+
+          // Use the detailed message format for all plans
+          var message = `Olá! Visitei a página da FNWl e gostaria de mais informações sobre o Plano ${planName} para suporte de tecnologia a pessoas maduras ou idosas, que ainda tem muita "lenha para queimar"!`;
+
+          var confirmationMessage = `Você selecionou:\n\nPlano: ${planName}\nPreço: ${price}\n\nCaracterísticas:\n${features.join('\n')}\n\nDeseja iniciar a conversa no WhatsApp para mais detalhes?`;
+
+          // Show confirmation dialog
+          if (window.confirm(confirmationMessage)) {
+            // User confirmed, open WhatsApp
+            var encodedMessage = encodeURIComponent(message);
+            var whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+            // Open WhatsApp in a new window/tab
+            var width = 400;
+            var height = 600;
+            var left = (screen.width - width) / 2;
+            var top = (screen.height - height) / 2;
+            window.open(whatsappUrl, 'whatsappWindow', `width=${width},height=${height},top=${top},left=${left}`);
+          } else {
+            // User canceled, do nothing
+            console.log('User canceled WhatsApp for Plan:', planName);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html> 
