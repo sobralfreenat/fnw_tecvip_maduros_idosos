@@ -28,7 +28,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 10px 20px;
       position: fixed;
       top: 0;
       width: 100%;
@@ -58,6 +58,7 @@
       max-width: 1500px;
       margin: 0 auto;
       padding: 20px;
+      position: relative; /* Establish stacking context */
     }
     section {
       margin-bottom: 60px;
@@ -112,7 +113,7 @@
       margin-top: 1rem;
     }
     #hero h1 {
-      font-size: 2.5rem;
+      font-size: 2.125rem; /* 15% smaller than 2.5rem */
     }
     #hero p {
       font-size: 1.5rem;
@@ -213,20 +214,20 @@
       padding: 20px;
       font-size: 0.875rem;
       color: #555;
+      position: relative; /* Establish stacking context */
     }
 
     /* Mobile Menu Styles */
     .hamburger {
       display: none;
       position: absolute;
-      top: 6px;
+      top: 8px;
       right: 16px;
-      width: 32px;
-      height: 36px;
-      padding-bottom: 2px;
+      width: 60px;
+      height: auto;
+      padding: 4px;
       flex-direction: column;
-      justify-content: space-between;
-      background: blue;
+      background: none;
       border: none;
       cursor: pointer;
       z-index: 200;
@@ -234,23 +235,18 @@
     .hamburger span {
       display: block;
       width: 100%;
-      height: 4px;
+      height: 6px;
       background-color: #0070f3;
       border-radius: 2px;
-      margin-bottom: 4px;
+      margin-bottom: 9px;
     }
     .hamburger span:last-child {
       margin-bottom: 0;
     }
-    /* Label below the hamburger bars */
-    .hamburger-label {
-      display: block;
-      width: 25%;          /* Ensure label takes full width */
-      color: #11ff00;          /* Menu text color */
-      font-size: 0.75rem;   /* Smaller font size to fit button */
-      line-height: 0;       /* Reduce line height */
-      margin-top: -25px; /* Remove margin, rely on padding/height */
-      text-align: left;
+
+    /* Add hover effect */
+    .hamburger:hover span {
+      background-color: #aaaaaa;
     }
     #mobile-menu {
       position: fixed;
@@ -324,23 +320,25 @@
 
     /* Header Logo Style */
     .header-logo {
-      height: 40px;
+      height: 80px;
       width: auto;
       display: block;
+      padding: 10px;
       margin-right: auto;
     }
 
     /* Floating WhatsApp Button Styles */
     #whatsapp-float {
       position: fixed;
-      bottom: 20px;
+      bottom: 0px;
       right: 20px;
-      z-index: 900;
+      z-index: 102;  /* Above stripe and header */
+      width: 100%; /* Make button wider */
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end; /* Align items to the right */
       cursor: pointer;
-      padding: 10px;
+      padding: 20px;
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -360,6 +358,116 @@
       font-weight: 600;
       margin: 0 10px;
     }
+
+    /* Fixed bottom stripe */
+    #bottom-stripe {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-color: #333;
+      z-index: 101;  /* Above header, below WhatsApp button */
+    }
+
+    /* Add a subtle hover effect */
+    .hamburger:hover span {
+      background-color: #aaaaaa;
+    }
+
+    /* Image Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 10000; /* Sit on top */
+      padding-top: 60px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.85); /* Black w/ opacity */
+      flex-direction: column; /* Arrange image and text vertically */
+      justify-content: center; /* Center content vertically */
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .modal-content { /* Now the Icon Display Area <div> */
+      /* Icon Styles */
+      font-size: 10rem; /* Adjust size as needed */
+      text-align: center;
+      margin: 20px auto; /* Add some margin */
+      color: #fff; /* White icon color */
+      text-shadow: 0 0 8px #fff; /* Increased glow width */
+      line-height: 1; /* Adjust line height for icon */
+    }
+
+    /* Modal Header Text Style */
+    #modal-header-text {
+      text-align: center;
+      color: #fff; /* White text */
+      font-size: 1.5rem; /* Adjust size as needed */
+      font-weight: bold;
+      margin-bottom: 10px; /* Space below header */
+    }
+
+    /* Caption Style */
+    #modal-caption {
+      margin: 15px auto; /* Space above/below */
+      display: block;
+      width: 80%;
+      max-width: 700px; /* Limit caption width */
+      text-align: center;
+      color: #ccc; /* Light grey text color */
+      padding: 10px 0;
+      font-size: 1.2rem; /* Slightly larger font */
+      line-height: 1.5;
+    }
+
+    /* Modal Carousel Buttons */
+    .modal-carousel-button {
+      position: absolute;
+      top: 50%; /* Center vertically relative to modal content area potentially */
+      transform: translateY(-50%);
+      z-index: 10001; /* Above modal content */
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 2rem;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-carousel-button:hover {
+      opacity: 1;
+    }
+
+    .modal-prev {
+      left: 20px; /* Position buttons */
+    }
+
+    .modal-next {
+      right: 20px; /* Position buttons */
+    }
   </style>
 </head>
 <body>
@@ -367,13 +475,14 @@
     <img src="https://www.sie.com.br/admin/_upload/2021/10/23/29155/665e0803ea26e.png" alt="FNW Assessoria Digital Logo" class="header-logo">
     <button class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
-      <span class="hamburger-label">Menu</span>
+      <!-- <span class="hamburger-label">Menu</span> -->
     </button>
     <nav>
       <a href="#">Início</a>
       <a href="#benefits">Benefícios</a>
       <a href="#pricing">Planos</a>
       <a href="#cta">Contato</a>
+      <a href="https://sobralfreenat.github.io/fnw_curadoria_sie/" class="content-popup-link">Conteúdo</a>
     </nav>
     <div id="mobile-menu">
       <nav>
@@ -381,7 +490,7 @@
         <a href="#benefits">Benefícios</a>
         <a href="#pricing">Planos</a>
         <a href="#cta">Contato</a>
-        <a href="#whatsapp" id="whatsapp-menu-link">Fale Conosco (WhatsApp)</a>
+        <a href="https://sobralfreenat.github.io/fnw_curadoria_sie/" class="content-popup-link">Conteúdo</a>
       </nav>
     </div>
   </header>
@@ -395,7 +504,11 @@
           <button id="hero-cta-button">Comece Agora</button>
         </div>
         <div class="hero-image">
-          <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/680bf0711dd73_ProvisoriaIDosotech.png" alt="Imagem do Hero">
+          <!-- Single image to trigger modal -->
+          <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/681d74f829af2_ImagemAle_Elieu_Maduros_Idosos.png" 
+               alt="Suporte Tecnológico para Idosos" 
+               id="hero-image-trigger" 
+               style="cursor: pointer; max-width: 100%; height: auto; border-radius: 6px;"> 
         </div>
       </div>
     </section>
@@ -413,8 +526,8 @@
           <p>Vídeos instrutivos e recursos interativos para estimulo cognitivo contínuo.</p>
         </div>
         <div class="card">
-          <h3>Acesso<br> Familiar</h3>
-          <p>Acesso Compartilhado em cortesia e incentivo para até 4 familiares cadastrados.</p>
+          <h3>Acesso Familiar</h3>
+          <p>Acesso Compartilhado em corstesia e incentivo para até 4 familiares cadastrados.</p>
         </div>
       </div>
     </section>
@@ -437,7 +550,7 @@
           <p><strong>R$ 400/ mês</strong></p>
           <ul>
             <li>1 atendimento a cada 15 dias</li>
-            <li>Disponibilidade de 2h30</li>
+            <li>Disponibildade de 2h30</li>
             <li>Acesso: +3 familiares cadastrados</li>
           </ul>
           <button class="plan-button" data-plan-name="Quinzenal">Escolher Plano</button>
@@ -447,7 +560,7 @@
           <p><strong>R$ 300/ mês</strong></p>
           <ul>
             <li>1 atendimento a cada 21 dias</li>
-            <li>Disponibilidade de 2 horas</li>
+            <li>Disponibildade de 2 horas</li>
             <li>Acesso: +2 familiares cadastrados</li>
           </ul>
           <button class="plan-button" data-plan-name="21 Dias">Escolher Plano</button>
@@ -471,6 +584,28 @@
     <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/6621e93e3f3ae_FNWfreenatstoreLogodownload.jpg" alt="Logo">
     <span>Fale Conosco</span>
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </div>
+
+  <!-- Bottom Stripe -->
+  <div id="bottom-stripe"></div>
+
+  <!-- Image Modal (Recreated) -->
+  <div id="image-modal" class="modal">
+    <span class="close-modal" id="close-image-modal" aria-label="Fechar Modal">&times;</span>
+    <!-- Modal Carousel Navigation -->
+    <button class="modal-carousel-button modal-prev" id="modal-prev" aria-label="Anterior">&#10094;</button>
+    <button class="modal-carousel-button modal-next" id="modal-next" aria-label="Próximo">&#10095;</button>
+    <!-- Modal Content Area -->
+    <h2 id="modal-header-text"></h2>
+    <div class="modal-content" id="modal-icon-display"></div> <!-- Icon Display Area -->
+    <div id="modal-caption"></div> <!-- Caption/Text Area -->
+    <div id="modal-button-area" style="text-align: center; display: none; margin-top: 20px;"></div> <!-- Placeholder for the 'Vamos Juntos' button -->
+    <div id="modal-choice-area" style="text-align: center; display: none; margin-top: 20px; background: #fff; padding: 30px 40px; border-radius: 8px; max-width: 90%; width: 400px; margin-left: auto; margin-right: auto;">
+        <h3 style="margin-bottom: 25px; color: #111; font-size: 1.3rem;">O que você gostaria de ver?</h3>
+        <button id="choice-plan-button" style="display: block; width: 100%; margin-bottom: 15px;">Escolher Plano</button>
+        <button id="choice-content-button" style="display: block; width: 100%;">Conteúdo</button>
+    </div> <!-- Area for Plan/Content choice -->
+    <iframe id="modal-iframe" style="display: none; width: 100%; height: 80vh; border: none; margin-top: 10px;"></iframe> <!-- iframe placeholder -->
   </div>
 
   <script>
@@ -498,22 +633,26 @@
             }
             // Close mobile menu if open and a link is clicked
             var mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu.classList.contains('active')) {
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
               mobileMenu.classList.remove('active');
             }
           });
         });
       });
     })();
+
     // Mobile menu toggle
     (function() {
       var hamburger = document.getElementById('hamburger');
       var mobileMenu = document.getElementById('mobile-menu');
-      hamburger.addEventListener('click', function() {
-        mobileMenu.classList.toggle('active');
-      });
+      if(hamburger && mobileMenu){
+          hamburger.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+          });
+      }
     })();
-    // WhatsApp link in mobile menu click handler
+
+    // WhatsApp link in mobile menu click handler (Link was removed, but keep handler just in case)
     (function() {
       var whatsappLink = document.getElementById('whatsapp-menu-link');
       var phoneNumber = '5511911595028'; // Your WhatsApp number
@@ -536,12 +675,13 @@
 
           // Optionally close the menu after clicking
           var mobileMenu = document.getElementById('mobile-menu');
-          if (mobileMenu.classList.contains('active')) {
+          if (mobileMenu && mobileMenu.classList.contains('active')) {
             mobileMenu.classList.remove('active');
           }
         });
       }
     })();
+
     // CTA button opens WhatsApp after confirmation
     (function() {
       var ctaButton = document.getElementById('cta-contact-button');
@@ -574,6 +714,7 @@
         });
       }
     })();
+
     // Hero CTA button smooth scroll to benefits
     (function() {
       var heroButton = document.getElementById('hero-cta-button');
@@ -594,19 +735,28 @@
         });
       }
     })();
+
     // WhatsApp float button click handler
     (function() {
       var whatsappButton = document.getElementById('whatsapp-float');
+      var phoneNumber = '5511911595028'; // Your WhatsApp number (repeat for safety or define globally)
       if (whatsappButton) {
         whatsappButton.onclick = function() {
+           // Construct the message
+          var message = "Olá! Visitei o site da FNW Assessoria Digital e gostaria de entrar em contato.";
+          var encodedMessage = encodeURIComponent(message);
+          var whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
           var width = 400;
           var height = 600;
           var left = (screen.width - width) / 2;
           var top = (screen.height - height) / 2;
-          window.open('https://api.whatsapp.com/send?phone=5511911595028', 'whatsappWindow', `width=${width},height=${height},top=${top},left=${left}`);
+          // Corrected the window.open call here
+          window.open(whatsappUrl, 'whatsappWindow', `width=${width},height=${height},top=${top},left=${left}`);
         };
       }
     })();
+
     // Pricing plan buttons - confirm and open WhatsApp
     (function() {
       var planButtons = document.querySelectorAll('.plan-button');
@@ -623,9 +773,9 @@
           // Extract details from the plan element
           var planName = this.getAttribute('data-plan-name');
           var priceElement = planElement.querySelector('p > strong');
-          var price = priceElement ? priceElement.textContent : 'Preço não encontrado';
+          var price = priceElement ? priceElement.textContent : ''; // Get price, default to empty string
           var featureElements = planElement.querySelectorAll('ul li');
-          var features = [];
+          var features = []; // Although not used in confirm message, keep for potential future use
           featureElements.forEach(function(li) {
             features.push("- " + li.textContent.trim());
           });
@@ -633,7 +783,8 @@
           // Use the detailed message format for all plans
           var message = `Olá! Visitei a página da FNWl e gostaria de mais informações sobre o Plano ${planName} para suporte de tecnologia a pessoas maduras ou idosas, que ainda tem muita "lenha para queimar"!`;
 
-          var confirmationMessage = `Você selecionou:\n\nPlano: ${planName}\nPreço: ${price}\n\nCaracterísticas:\n${features.join('\n')}\n\nDeseja iniciar a conversa no WhatsApp para mais detalhes?`;
+          // Simpler confirmation message with price and action instruction
+          var confirmationMessage = `Você escolheu o Plano ${planName} (${price.trim()}).\n\nClique OK para prosseguir ou Cancelar para voltar.`;
 
           // Show confirmation dialog
           if (window.confirm(confirmationMessage)) {
@@ -654,6 +805,243 @@
         });
       });
     })();
+
+    // Content link popup handler (with confirmation)
+    (function() {
+      var contentLinks = document.querySelectorAll('.content-popup-link'); // Use the restored class
+      contentLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault(); // Stop default link behavior
+
+          // Confirmation message
+          var confirmationMessage = "Escolha a categorias e conteudos a seguir.";
+
+          if (window.confirm(confirmationMessage)) {
+            // User confirmed, open the base content page URL
+            var url = this.getAttribute('href'); // Get the base URL from the link
+
+
+            // Define popup window features
+            var width = 400;
+            var height = 700;
+            var left = screen.width - width; // Align to the right edge
+            var top = (screen.height - height) / 2;
+            var features = `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,resizable=yes`;
+
+            // Open the base URL in the popup
+            window.open(url, 'contentWindow', features);
+
+            // Optionally close mobile menu if it was open
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+              mobileMenu.classList.remove('active');
+            }
+          } else {
+            // User cancelled
+            console.log('Content popup cancelled.');
+            // Still close mobile menu if the click originated there
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+              mobileMenu.classList.remove('active');
+            }
+          }
+        });
+      });
+    })();
+
+    // Image Modal Logic with Carousel and Choice Step
+    (function() {
+      const modal = document.getElementById('image-modal');
+      const iconDisplay = document.getElementById('modal-icon-display');
+      const captionText = document.getElementById('modal-caption');
+      const modalHeaderText = document.getElementById('modal-header-text');
+      const modalButtonArea = document.getElementById('modal-button-area');
+      const modalChoiceArea = document.getElementById('modal-choice-area'); // New choice area
+      const modalIframe = document.getElementById('modal-iframe');
+      const closeModalBtn = document.getElementById('close-image-modal');
+      const modalPrevBtn = document.getElementById('modal-prev');
+      const modalNextBtn = document.getElementById('modal-next');
+      const heroImageTrigger = document.getElementById('hero-image-trigger');
+      const choicePlanButton = document.getElementById('choice-plan-button'); // Button in choice area
+      const choiceContentButton = document.getElementById('choice-content-button'); // Button in choice area
+      const pricingSection = document.getElementById('pricing');
+
+      // Define the image data (using icons now)
+      const imageData = [
+        {
+          header: "LEMBRE-SE:",
+          icon: "💡",
+          text: "Cada passo na tecnologia é uma nova descoberta!"
+        },
+        {
+          header: "APRENDER:",
+          icon: "🎓",
+          text: "Mantém a mente ativa!"
+        },
+        {
+          header: "EXERCITE:",
+          icon: "🧠",
+          text: "Sua cognição conosco!"
+        },
+        {
+          type: "button",
+          buttonText: "Vamos juntos!"
+        }
+      ];
+
+      let currentImageIndex = 0;
+      const totalImages = imageData.length;
+
+      // Basic check for core elements
+      if (!modal || !heroImageTrigger || !closeModalBtn) return;
+
+      // Function to open modal
+      function openModal(index) {
+        currentImageIndex = index;
+        updateModalContent(); // Update content first
+        // Ensure choice area and iframe are hidden initially
+        if (modalChoiceArea) modalChoiceArea.style.display = 'none';
+        if (modalIframe) {
+            modalIframe.style.display = 'none';
+            modalIframe.src = '';
+        }
+        // Make sure nav buttons are visible initially (if needed)
+        toggleModalNavButtons();
+        modal.style.display = "flex";
+      }
+
+      // Function to close modal
+      function closeModalFunction() {
+        if (modalIframe) {
+            modalIframe.style.display = 'none';
+            modalIframe.src = '';
+        }
+        modal.style.display = "none";
+      }
+
+      // Function to update modal content based on index
+      function updateModalContent() {
+         const currentData = imageData[currentImageIndex];
+
+         // Hide everything initially inside the modal update cycle
+         if (modalHeaderText) modalHeaderText.style.display = 'none';
+         if (iconDisplay) iconDisplay.style.display = 'none';
+         if (captionText) captionText.style.display = 'none';
+         if (modalButtonArea) modalButtonArea.style.display = 'none';
+         if (modalChoiceArea) modalChoiceArea.style.display = 'none';
+         if (modalIframe) modalIframe.style.display = 'none';
+         if (modalPrevBtn) modalPrevBtn.style.display = 'block'; // Assume nav buttons visible unless hidden later
+         if (modalNextBtn) modalNextBtn.style.display = 'block';
+
+         if (currentData.type === 'button') {
+             // --- Fourth Slide: Show "Vamos Juntos!" button --- 
+             if (modalButtonArea) {
+                 modalButtonArea.innerHTML = ''; // Clear previous button
+                 const vamosJuntosButton = document.createElement('button');
+                 vamosJuntosButton.textContent = currentData.buttonText;
+                 // Add styling
+                 vamosJuntosButton.style.backgroundColor = '#0070f3';
+                 vamosJuntosButton.style.color = '#fff';
+                 vamosJuntosButton.style.border = 'none';
+                 vamosJuntosButton.style.borderRadius = '4px';
+                 vamosJuntosButton.style.padding = '0.75rem 1.5rem';
+                 vamosJuntosButton.style.fontSize = '1rem';
+                 vamosJuntosButton.style.cursor = 'pointer';
+
+                 // Add listener to show the CHOICE AREA
+                 vamosJuntosButton.addEventListener('click', function() {
+                     if (modalButtonArea) modalButtonArea.style.display = 'none';
+                     if (modalChoiceArea) modalChoiceArea.style.display = 'block';
+                     if (modalPrevBtn) modalPrevBtn.style.display = 'none'; // Hide nav when showing choices
+                     if (modalNextBtn) modalNextBtn.style.display = 'none';
+                 });
+
+                 modalButtonArea.appendChild(vamosJuntosButton);
+                 modalButtonArea.style.display = 'block';
+             }
+         } else {
+             // --- Slides 1-3: Show Header, Icon, Text --- 
+             if (modalHeaderText) {
+                modalHeaderText.textContent = currentData.header || '';
+                modalHeaderText.style.display = 'block';
+             }
+             if (iconDisplay) {
+                iconDisplay.textContent = currentData.icon || '';
+                iconDisplay.style.display = 'block';
+             }
+             if (captionText) {
+                captionText.textContent = currentData.text || '';
+                captionText.style.display = 'block';
+             }
+         }
+         // Re-evaluate nav buttons visibility based on index (might be redundant if done inside cases)
+         toggleModalNavButtons();
+      }
+
+      // Function to show/hide modal nav buttons based on index
+      function toggleModalNavButtons() {
+         if (!modalPrevBtn || !modalNextBtn) return;
+         // Hide prev on first slide, next on last slide (button slide)
+         modalPrevBtn.style.display = (currentImageIndex === 0) ? 'none' : 'block';
+         modalNextBtn.style.display = (currentImageIndex === totalImages - 1) ? 'none' : 'block';
+      }
+
+      // Trigger: Hero Image Click
+      heroImageTrigger.addEventListener('click', function() {
+         openModal(0); // Open modal starting with the first image
+      });
+
+      // Close Button
+      closeModalBtn.addEventListener('click', closeModalFunction);
+
+      // Modal Background Click
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          closeModalFunction();
+        }
+      });
+
+      // --- Listeners for the CHOICE AREA buttons ---
+      if (choicePlanButton && pricingSection) {
+         choicePlanButton.addEventListener('click', function() {
+          // Smooth scroll to pricing section with offset
+          var elementPosition = pricingSection.getBoundingClientRect().top;
+          var offsetPosition = elementPosition + window.pageYOffset - 100; // Adjust offset if needed
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          closeModalFunction(); // Close modal after action
+         });
+      }
+
+      if (choiceContentButton && modalIframe) {
+         choiceContentButton.addEventListener('click', function() {
+          const iframeUrl = 'https://sobralfreenat.github.io/fnw_curadoria_sie/';
+          // Hide choice area, show iframe
+          if (modalChoiceArea) modalChoiceArea.style.display = 'none';
+          modalIframe.src = iframeUrl;
+          modalIframe.style.display = 'block';
+          // Keep modal open, but user can close with 'X'
+         });
+      }
+
+      // --- Listeners for Carousel Navigation --- 
+      if (modalNextBtn) {
+         modalNextBtn.addEventListener('click', () => {
+          currentImageIndex = (currentImageIndex + 1) % totalImages;
+          updateModalContent();
+         });
+      }
+
+      if (modalPrevBtn) {
+         modalPrevBtn.addEventListener('click', () => {
+          currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+          updateModalContent();
+         });
+      }
+    })();
+
   </script>
 </body>
-</html> 
+</html>
